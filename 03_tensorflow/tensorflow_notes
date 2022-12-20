@@ -1,0 +1,44 @@
+Train a Neural Network in TensorFlow
+
+# code to write
+import tensorflow as tf
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
+
+# step 1 >> define how to compute the output
+model = Sequential([
+    Dense(units=25, activation='sigmoid'),
+    Dense(units=15, activation='sigmoid'),
+    Dense(units=1, activation='sigmoid'),
+                    ])
+ex. 25 hidden units in the 1st layer ...
+
+# step 2 - compile the model and specify what Loss function to use
+from tensorflow.keras.losses import BinaryCrossentropy
+model.compile(loss=BinaryCrossentropy())
+
+# Binary cross entropy function or logistic lost:
+1 or 0 classification problem >> L(f(x) y) = -y log(f(x)) - (1 - y) log(1 - f(x))
+
+# for regression problem: MeanSquaredError function
+
+# step - 3 - function to minimize cost
+model.fix(X, Y, epochs=100) >> epochs == steps of gradient descent
+
+
+--- --- ---
+RELU function - g(z) = max(0, z)
+if z < 0 than g(z) = 0 & if z >= 0 than g(z) = z
+
+How to choose activation function?
+
+1) Binary classification > 1 or 2 - sigmoid activation
+
+2) Regression problem (y = +/- > positive or negative number) - linear activation
+
+3) Regression (y >= 0, non-negative values) - ReLU - most common choice
+
+For final layer use 'sigmoid' when it's binary classification, 'linear' when
+y is positive/negative, 'relu' when y >= 0. In hidden layers 'relu' is most common
+choice
+
